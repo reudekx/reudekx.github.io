@@ -1,0 +1,60 @@
+---
+layout: default
+
+---
+
+<!-- 문서 내용 -->
+{{ content }}
+
+<!-- 현재 페이지의 경로 분석 -->
+{% assign path_parts = page.path | split: '/' %}
+{% assign current_path = page.path | remove: '.md' %}
+
+<!-- 상위 문서 찾기 -->
+{% assign parent_path = '' %}
+{% for part in path_parts %}
+  {% if forloop.index < path_parts.size %}
+    {% if forloop.index > 1 %}
+      {% assign parent_path = parent_path | append: '/' | append: part %}
+    {% else %}
+      {% assign parent_path = part %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<!-- 상위 문서 -->
+<h3>상위 문서</h3>
+<ul>
+{% for doc in site.articles %}
+  {% assign doc_path = doc.path | remove: '.md' %}
+  {% if doc_path == parent_path %}
+    <li><a href="{{ doc.url }}">{{ doc.title }}</a></li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+<!-- 형제 문서 목록 -->
+<h3>관련 문서</h3>
+{% assign current_dir = current_path | split: '/' | pop | join: '/' %}
+<ul>
+{% for doc in site.articles %}
+  {% assign doc_path = doc.path | remove: '.md' %}
+  {% assign doc_dir = doc_path | split: '/' | pop | join: '/' %}
+  {% if doc_dir == current_dir and doc.path != page.path %}
+    <li><a href="{{ doc.url }}">{{ doc.title }}</a></li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+<!-- 자식 문서 목록 -->
+<h3>하위 문서</h3>
+{% assign current_dir = current_path %}
+<ul>
+{% for doc in site.articles %}
+  {% assign doc_path = doc.path | remove: '.md' %}
+  {% assign doc_dir = doc_path | split: '/' | pop | join: '/' %}
+  {% if doc_dir == current_path %}
+    <li><a href="{{ doc.url }}">{{ doc.title }}</a></li>
+  {% endif %}
+{% endfor %}
+</ul>
