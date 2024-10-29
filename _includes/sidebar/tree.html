@@ -1,0 +1,172 @@
+<aside class="sidebar">
+    <!-- 상위 문서 -->
+    {%- assign path_parts = page.path | split: '/' -%}
+    {%- assign current_path = page.path | remove: '.md' -%}
+    {%- assign parent_path = '' -%}
+    {%- for part in path_parts -%}
+      {%- if forloop.index < path_parts.size -%}
+        {%- if forloop.index > 1 -%}
+          {%- assign parent_path = parent_path | append: '/' | append: part -%}
+        {%- else -%}
+          {%- assign parent_path = part -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  
+    <div class="sidebar-section">
+      <h3>상위 문서</h3>
+      <ul>
+      {%- for doc in site.articles -%}
+        {%- assign doc_path = doc.path | remove: '.md' -%}
+        {%- if doc_path == parent_path -%}
+          <li><a href="{{ doc.url }}">{{ doc.title }}</a></li>
+        {%- endif -%}
+      {%- endfor -%}
+      </ul>
+    </div>
+  
+    <!-- 관련 문서 목록 -->
+    <div class="sidebar-section">
+      <h3>관련 문서</h3>
+      {%- assign current_dir = current_path | split: '/' | pop | join: '/' -%}
+      <ul>
+      {%- for doc in site.articles -%}
+        {%- assign doc_path = doc.path | remove: '.md' -%}
+        {%- assign doc_dir = doc_path | split: '/' | pop | join: '/' -%}
+        {%- if doc_dir == current_dir and doc.path != page.path -%}
+          <li><a href="{{ doc.url }}">{{ doc.title }}</a></li>
+        {%- endif -%}
+      {%- endfor -%}
+      </ul>
+    </div>
+  
+    <!-- 하위 문서 목록 -->
+    <div class="sidebar-section">
+      <h3>하위 문서</h3>
+      {%- assign current_dir = current_path -%}
+      <ul>
+      {%- for doc in site.articles -%}
+        {%- assign doc_path = doc.path | remove: '.md' -%}
+        {%- assign doc_dir = doc_path | split: '/' | pop | join: '/' -%}
+        {%- if doc_dir == current_path -%}
+          <li><a href="{{ doc.url }}">{{ doc.title }}</a></li>
+        {%- endif -%}
+      {%- endfor -%}
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+        <h3>목차</h3>
+        {% assign headings = content | split: '<h' %}
+        <ul class="toc-list">
+          {% for heading in headings %}
+            {% if heading contains "2" or heading contains "3" %}
+              {% assign headingContent = heading | split: '</h' | first %}
+              {% assign level = headingContent | slice: 0, 1 %}
+              {% assign title = headingContent | split: '>' | last | strip_html | strip %}
+              {% assign id = title | slugify %}
+              
+              <li class="toc-item level-{{ level }}">
+                <a href="#{{ id }}">{{ title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+  </aside>
+  
+  <style>
+    .sidebar {
+      width: 300px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 2rem;
+      height: fit-content;
+      padding: 1rem;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+    }
+  
+    .sidebar-section {
+      margin-bottom: 1.5rem;
+    }
+  
+    .sidebar-section:last-child {
+      margin-bottom: 0;
+    }
+  
+    .sidebar h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+      color: #333;
+    }
+  
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  
+    .sidebar li {
+      margin-bottom: 0.5rem;
+    }
+  
+    .sidebar a {
+      color: #0366d6;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+  
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+  
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        margin-top: 2rem;
+      }
+    }
+
+  /* 목차 관련 스타일 추가 */
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-item {
+    margin: 0.3rem 0;
+  }
+
+  .toc-item.level-1 {
+    font-weight: 600;
+  }
+
+  .toc-item.level-2 {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .toc-item a {
+    color: #0366d6;
+    text-decoration: none;
+    display: block;
+    padding: 0.2rem 0;
+  }
+
+  .toc-item a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      position: static;
+      margin-top: 2rem;
+    }
+  }
+  </style>
