@@ -320,6 +320,9 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages (~> 232)
+  jekyll-feed
+  jekyll-seo-tag
+  jekyll-sitemap
 
 BUNDLED WITH
    2.5.16

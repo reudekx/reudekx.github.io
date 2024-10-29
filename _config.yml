@@ -1,14 +1,44 @@
-collections:
-  articles:
-    output: true
-    permalink: /:path
+# 기본 정보
+title: "REUDEKX"
+description: "REUDEKX's Development Blog"
+url: "https://reudekx.github.io"
+baseurl: ""
+author: "REUDEKX"
 
+# GitHub 저장소
+repository: reudekx/reudekx.github.io
+
+# 컬렉션 설정
+collections:
+ articles:
+   output: true
+   permalink: /:path
+
+# 기본 레이아웃 설정
 defaults:
-  - scope:
-      path: ""
-    values:
-      layout: default
-  - scope:
-      path: "_articles"
-    values:
-      layout: article
+ - scope:
+     path: ""
+   values:
+     layout: default
+ - scope:
+     path: "_articles"
+   values:
+     layout: article
+
+compress_html:
+  clippings: all     # 모든 HTML 태그 주변의 공백 제거
+  comments: all      # 모든 HTML 주석 제거
+  endings: all       # 모든 HTML 태그 끝 부분의 공백 제거
+  profile: false     # 압축 프로파일링 비활성화
+  blanklines: false  # 빈 줄 제거
+  ignore:
+    envs: [development]  # development 환경에서는 압축 무시
+
+sass:
+  style: compressed
+
+# 플러그인
+plugins:
+ - jekyll-feed
+ - jekyll-sitemap
+ - jekyll-seo-tag

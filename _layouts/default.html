@@ -1,12 +1,19 @@
 <!doctype html>
-<html>
+<html lang="ko">
   <head>
     <meta charset="utf-8">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="/assets/css/markdown.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    {% feed_meta %}
+    {% seo %}
   </head>
   <body>
-    {% include navigation.html %}
-    {{ content }}
+    {% include header.html %}
+    <main>
+      {{ content }}
+    </main>
+    {% include footer.html %}
   </body>
 </html>
