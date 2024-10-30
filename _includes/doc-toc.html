@@ -1,0 +1,22 @@
+<div class="doc-toc">
+  <h3>목차</h3>
+  {% assign headers = content | split: '<h2' %}
+  <ul class="doc-toc-list">
+    {% for header in headers %}
+      {% if header contains '</h2>' %}
+        {% assign title = header | split: '</h2>' | first | split: '>' | last | strip_html | strip %}
+        {% assign id = title | slugify %}
+        <li class="doc-toc-item"><a href="#{{ id }}">{{ title }}</a></li>
+        
+        {% assign subheaders = header | split: '<h3' %}
+        {% for subheader in subheaders %}
+          {% if subheader contains '</h3>' %}
+            {% assign subtitle = subheader | split: '</h3>' | first | split: '>' | last | strip_html | strip %}
+            {% assign subid = subtitle | slugify %}
+            <li class="doc-toc-subitem">>><a href="#{{ subid }}">{{ subtitle }}</a></li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
