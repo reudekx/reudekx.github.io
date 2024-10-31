@@ -1,10 +1,10 @@
-<div class="doc-tree">
+<div class="tree">
   {%- assign current_path = page.path | remove: '.md' %}
   {%- assign path_parts = current_path | split: '/' -%}
   {%- assign parent_path = path_parts | pop | join: '/' -%}
 
   <!-- 부모 문서 -->
-  <div class="doc-tree-group">
+  <div class="tree-group">
     <h3>상위 문서</h3>
     <ul>
     {%- for doc in site.docs -%}
@@ -17,7 +17,7 @@
   </div>
 
   <!-- 관련 문서 목록 -->
-  <div class="doc-tree-group">
+  <div class="tree-group">
     <h3>관련 문서</h3>
     <ul>
     {%- for doc in site.docs -%}
@@ -31,7 +31,7 @@
   </div>
 
   <!-- 하위 문서 목록 -->
-  <div class="doc-tree-group">
+  <div class="tree-group">
     <h3>하위 문서</h3>
     <ul>
     {%- for doc in site.docs -%}

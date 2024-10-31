@@ -1,0 +1,43 @@
+<div class="toc" id="toc">
+  <h3>목차</h3>
+  {% assign headers = content | split: '<h2' %}
+  {% assign h2_count = 0 %}
+  
+  <ul class="toc-list">
+    {% for header in headers %}
+      {% if header contains '</h2>' %}
+        {% assign h2_count = h2_count | plus: 1 %}
+        {% assign title = header | split: '</h2>' | first | split: '>' | last | strip_html | strip %}
+        {% assign id = title | slugify %}
+        
+        <li class="toc-item">
+          <div class="toc-heading">
+            <a href="#section-{{ h2_count }}" class="toc-number">{{ h2_count }}.</a>
+            <span class="toc-title">{{ title }}</span>
+          </div>
+        
+          {% assign subheaders = header | split: '<h3' %}
+          {% assign h3_count = 0 %}
+          {% if subheaders.size > 1 %}
+            <ul class="toc-sublist">
+              {% for subheader in subheaders %}
+                {% if subheader contains '</h3>' %}
+                  {% assign h3_count = h3_count | plus: 1 %}
+                  {% assign subtitle = subheader | split: '</h3>' | first | split: '>' | last | strip_html | strip %}
+                  {% assign subid = subtitle | slugify %}
+                  
+                  <li class="toc-subitem">
+                    <div class="toc-subheading">
+                      <a href="#section-{{ h2_count }}-{{ h3_count }}" class="toc-subnumber">{{ h2_count }}.{{ h3_count }}.</a>
+                      <span class="toc-subtitle">{{ subtitle }}</span>
+                    </div>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

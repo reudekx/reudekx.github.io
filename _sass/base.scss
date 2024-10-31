@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $bg-page;
+  color: $text-primary;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $text-primary;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+p {
+  color: $text-secondary;
+  margin-bottom: 1em;
+  letter-spacing: 0.01em;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  
+  &:hover {
+    text-decoration: underline;
+    opacity: 0.85;
+  }
+}
