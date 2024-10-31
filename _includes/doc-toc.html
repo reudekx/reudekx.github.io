@@ -1,19 +1,27 @@
-<div class="doc-toc">
+<div class="doc-toc", id="doc-toc">
   <h3>목차</h3>
   {% assign headers = content | split: '<h2' %}
+  {% assign h2_count = 0 %}
   <ul class="doc-toc-list">
     {% for header in headers %}
       {% if header contains '</h2>' %}
+        {% assign h2_count = h2_count | plus: 1 %}
         {% assign title = header | split: '</h2>' | first | split: '>' | last | strip_html | strip %}
         {% assign id = title | slugify %}
-        <li class="doc-toc-item"><a href="#{{ id }}">{{ title }}</a></li>
+        <li class="doc-toc-item">
+          <a href="#section-{{ h2_count }}">{{ h2_count }}</a>. {{ title }}
+        </li>
         
         {% assign subheaders = header | split: '<h3' %}
+        {% assign h3_count = 0 %}
         {% for subheader in subheaders %}
           {% if subheader contains '</h3>' %}
+            {% assign h3_count = h3_count | plus: 1 %}
             {% assign subtitle = subheader | split: '</h3>' | first | split: '>' | last | strip_html | strip %}
             {% assign subid = subtitle | slugify %}
-            <li class="doc-toc-subitem">>><a href="#{{ subid }}">{{ subtitle }}</a></li>
+            <li class="doc-toc-subitem">
+              <a href="#section-{{ h2_count }}-{{ h3_count }}">{{ h2_count }}.{{ h3_count }}</a>. {{ subtitle }}
+            </li>
           {% endif %}
         {% endfor %}
       {% endif %}

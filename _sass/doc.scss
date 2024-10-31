@@ -4,13 +4,24 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+}
 
-  .content {
-    flex: 1;
-    min-width: 0;
-  }
+.doc-content {
+  flex: 1;
+  min-width: 0;
+}
 
-  @media (max-width: 768px) {
+.doc-sidebar {
+  width: 180px;
+}
+
+@media (max-width: 768px) {
+  .doc {
     flex-direction: column;
+  }
+  
+  .doc-sidebar {
+    order: -1;
+    width: 100%;
   }
 }
