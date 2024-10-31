@@ -1,11 +1,10 @@
 .markdown {
   font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
-  color: $text-primary;
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  background: $bg-document;
+  background: $color-bg-document;
 
   // Headers
   h1,
@@ -38,30 +37,27 @@
 
   h4 {
     font-size: 1em;
-    color: #3949ab;
   }
 
   h5 {
     font-size: .875em;
-    color: #3f51b5;
   }
 
   h6 {
     font-size: .85em;
-    color: #5c6bc0;
   }
 
   // Links
-  a {
-    color: #2196f3;
-    text-decoration: none;
-    transition: color 0.2s ease;
+  // a {
+  //   color: #2196f3;
+  //   text-decoration: none;
+  //   transition: color 0.2s ease;
 
-    &:hover {
-      color: #1976d2;
-      text-decoration: underline;
-    }
-  }
+  //   &:hover {
+  //     color: #1976d2;
+  //     text-decoration: underline;
+  //   }
+  // }
 
   // Lists
   ul,
@@ -184,7 +180,6 @@
   // Paragraphs
   p {
     margin: 0 0 16px;
-    color: $text-secondary;
   }
 
   // First and last child margins
