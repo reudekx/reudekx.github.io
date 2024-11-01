@@ -70,3 +70,29 @@ a:not([href^="#"]):not([href^="/"]):not([href^="./"]):not([href^="../"]) {
     content: "↗";
   }
 }
+
+blockquote {
+  padding: 0.5em 1em;
+  margin: 16px 0;
+  background: #333f49;
+  border-left: 4px solid #90a4ae;
+}
+
+code:not(pre code) {
+  background: $color-bg-page;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  display: block;
+}
+
+pre {
+  background: $color-bg-page;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+}

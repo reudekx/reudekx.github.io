@@ -1,35 +1,35 @@
 <div class="markdown">
-  {% assign headers = content | split: '<h2' %}
-  {% assign h2_count = 0 %}
-  {% capture numbered_content %}
-    {% for header in headers %}
-      {% if forloop.first %}
+  {%- assign headers = content | split: '<h2' -%}
+  {%- assign h2_count = 0 -%}
+  {%- capture numbered_content -%}
+    {%- for header in headers -%}
+      {%- if forloop.first -%}
         {{ header }}
-      {% else %}
-        {% assign h2_count = h2_count | plus: 1 %}
-        {% assign h2_parts = header | split: '</h2>' %}
-        {% assign h2_title = h2_parts[0] | split: '>' | last %}
+      {%- else -%}
+        {%- assign h2_count = h2_count | plus: 1 -%}
+        {%- assign h2_parts = header | split: '</h2>' -%}
+        {%- assign h2_title = h2_parts[0] | split: '>' | last -%}
         <h2 id="section-{{ h2_count }}">
           <a href="#toc">{{ h2_count }}.</a> {{ h2_title }}</h2>
         
-        {% assign remainder = h2_parts[1] %}
-        {% assign subheaders = remainder | split: '<h3' %}
-        {% assign h3_count = 0 %}
+        {%- assign remainder = h2_parts[1] -%}
+        {%- assign subheaders = remainder | split: '<h3' -%}
+        {%- assign h3_count = 0 -%}
         
-        {% for subheader in subheaders %}
-          {% if forloop.first %}
+        {%- for subheader in subheaders -%}
+          {%- if forloop.first -%}
             {{ subheader }}
-          {% else %}
-            {% assign h3_count = h3_count | plus: 1 %}
-            {% assign h3_parts = subheader | split: '</h3>' %}
-            {% assign h3_title = h3_parts[0] | split: '>' | last %}
+          {%- else -%}
+            {%- assign h3_count = h3_count | plus: 1 -%}
+            {%- assign h3_parts = subheader | split: '</h3>' -%}
+            {%- assign h3_title = h3_parts[0] | split: '>' | last -%}
             <h3 id="section-{{ h2_count }}-{{ h3_count }}">
               <a href="#toc">{{ h2_count }}.{{ h3_count }}.</a> {{ h3_title }}</h3>
             {{ h3_parts[1] }}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-    {% endfor %}
-  {% endcapture %}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
   {{ numbered_content }}
 </div>
