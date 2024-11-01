@@ -37,8 +37,14 @@ compress_html:
 sass:
   style: compressed
 
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
+
 # 플러그인
 plugins:
- - jekyll-feed
- - jekyll-sitemap
- - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-titles-from-headings
