@@ -1,27 +1,11 @@
 .doc {
   display: flex;
-  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  background: $color-bg-document;
 }
 
-.doc-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.doc-sidebar {
-  width: 180px;
-}
-
-@media (max-width: 768px) {
-  .doc {
-    flex-direction: column;
-  }
-  
-  .doc-sidebar {
-    order: -1;
-    width: 100%;
-  }
+.doc > .container {
+  display: flex;
+  width: 100%;
 }

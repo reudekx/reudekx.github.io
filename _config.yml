@@ -19,7 +19,7 @@ defaults:
  - scope:
      path: ""
    values:
-     layout: default
+     layout: static
  - scope:
      path: "_docs"
    values:

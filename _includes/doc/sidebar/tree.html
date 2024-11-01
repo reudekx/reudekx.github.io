@@ -10,7 +10,7 @@
     {%- for doc in site.docs -%}
       {%- assign doc_path = doc.path | remove: '.md' -%}
       {%- if doc_path == parent_path -%}
-        <li><a href="{{ doc.url }}" class="link-internal">{{ doc.title }}</a></li>
+        <li><a href="{{ doc.url }}">{{ doc.title }}</a></li>
       {%- endif -%}
     {%- endfor -%}
     </ul>
@@ -24,7 +24,7 @@
       {%- assign doc_path = doc.path | remove: '.md' -%}
       {%- assign doc_dir = doc_path | split: '/' | pop | join: '/' -%}
       {%- if doc_dir == parent_path and doc.path != page.path -%}
-        <li><a href="{{ doc.url }}" class="link-internal">{{ doc.title }}</a></li>
+        <li><a href="{{ doc.url }}">{{ doc.title }}</a></li>
       {%- endif -%}
     {%- endfor -%}
     </ul>
@@ -38,7 +38,7 @@
       {%- assign doc_path = doc.path | remove: '.md' -%}
       {%- assign doc_dir = doc_path | split: '/' | pop | join: '/' -%}
       {%- if doc_dir == current_path -%}
-        <li><a href="{{ doc.url }}" class="link-internal">{{ doc.title }}</a></li>
+        <li><a href="{{ doc.url }}">{{ doc.title }}</a></li>
       {%- endif -%}
     {%- endfor -%}
     </ul>

@@ -1,6 +1,6 @@
-- name: Home
+- name: HOME
   link: /
-- name: About
-  link: /about.html
-- name: Wiki
-  link: /wiki
+- name: DOCS
+  link: /docs
+- name: ABOUT
+  link: /about
