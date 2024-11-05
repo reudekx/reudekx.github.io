@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+{%- capture processed_markdown -%}
+  {%- include processed_markdown.html content=content -%}
+{%- endcapture -%}
+
+{%- capture markdown_title -%}
+  {%- include markdown_title.html content=processed_markdown -%}
+{%- endcapture -%}
+
+{%- capture markdown_date -%}
+  {%- include markdown_date.html -%}
+{%- endcapture -%}
+
+{%- capture markdown_body -%}
+  {%- include markdown_body.html content=processed_markdown -%}
+{%- endcapture -%}
+
+{%- capture markdown_toc -%}
+  {%- include markdown_toc.html processed_body=markdown_body -%}
+{%- endcapture -%}
+
+{%- capture markdown_tree -%}
+  {%- include markdown_tree.html -%}
+{%- endcapture -%}
+
+<article class="doc">
+  <div class="container">
+    <div class="markdown">
+      <div class="markdown-title">{{ markdown_title }}</div>
+      <div class="markdown-date">{{ markdown_date }}</div>
+      <div class="markdown-tree">{{ markdown_tree }}</div>
+      <div class="markdown-toc", id="toc">{{ markdown_toc }}</div>
+      <div class="markdown-body">{{ markdown_body }}</div>
+    </div>
+  </div>
+</article>

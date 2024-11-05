@@ -1,0 +1,32 @@
+{%- capture output -%}
+  {%- assign paths = "" | split: "" -%}
+  {%- for doc in site.docs -%}
+    {%- assign doc_path = doc.path | remove: ".md" -%}
+    {%- assign paths = paths | push: doc_path -%}
+  {%- endfor -%}
+  {%- assign paths = paths | sort -%}
+  
+  {%- assign curr_path = page.path | remove: ".md" -%}
+  {%- assign last_level = 0 -%}
+  {%- for path in paths -%}
+    {%- assign path_parts = path | split: "/" | shift -%}
+    {%- assign curr_level = path_parts.size -%}
+    {%- if curr_level > last_level -%}
+      <ul>
+    {%- elsif curr_level < last_level -%}
+      {%- assign level_diff = last_level | minus: curr_level -%}
+      {%- for i in (1..level_diff) -%}
+        </ul>
+      {%- endfor -%}
+    {%- endif -%}
+    {%- assign link = path_parts | join: "/" -%}
+    {%- assign link = "/" | append: link -%}
+    <li><a href="{{ link }}"
+      {%- if path == curr_path -%}class="current"{%- endif -%} 
+    >{{ path_parts | last }}</a></li>
+    {%- assign last_level = curr_level -%}
+  {%- endfor -%}
+
+{%- endcapture -%}
+
+{{ output }}

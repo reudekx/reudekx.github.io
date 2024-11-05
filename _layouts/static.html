@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+{%- capture processed_markdown -%}
+  {%- include processed_markdown.html content=content -%}
+{%- endcapture -%}
+
+{%- capture markdown_title -%}
+  {%- include markdown_title.html content=processed_markdown -%}
+{%- endcapture -%}
+
+{%- capture markdown_body -%}
+  {%- include markdown_body.html content=processed_markdown -%}
+{%- endcapture -%}
+
+
+<article class="doc">
+  <div class="container">
+    <div class="markdown">
+      <div class="markdown-title">
+        {{ markdown_title }}
+      </div>
+      <div class="markdown-body">
+        {{ markdown_body }}
+      </div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,57 @@
+#!/bin/bash
+
+CURRENT_DATE=$(date +%Y-%m-%d)
+
+process_file() {
+    local file="$1"
+
+    # 첫 줄이 정확히 "---"로 시작하는지 검사
+    if ! head -n1 "$file" | grep -q "^---$"; then
+        return 0
+    fi
+
+    # 임시 파일 생성
+    if ! tmp_file=$(mktemp); then
+        echo "Error: Failed to create temporary file"
+        return 1
+    fi
+
+    # 첫 줄을 임시 파일에 출력
+    head -n1 "$file" > "$tmp_file"
+
+    # 생성 날짜가 없으면 임시 파일에 출력
+    if ! grep -q "^created_date:" "$file"; then
+        echo "created_date: $CURRENT_DATE" >> "$tmp_file"
+    fi
+
+    # 수정 날짜 갱신
+    # sed 's/패턴/바꿀내용/횟수' (s = substitution)
+    tail -n +2 "$file" | sed "s/^modified_date:.*/modified_date: $CURRENT_DATE/1" >> "$tmp_file"
+
+    # 수정 날짜가 없는 경우 임시 파일을 수정하여 추가
+    # 첫번째 created_date 이후는 무시하고,
+    # 첫번째 created_date 발견시에는 다음 줄에 modified_date 추가
+    # 좀 복잡하긴 한데 여러 테스트 후에 이 명령어 말고는 제대로 작동하는 케이스를 못 찾음...
+    if ! grep -q "^modified_date:" "$tmp_file"; then
+        sed -i "0,/^created_date:/!b;/^created_date:/a modified_date: $CURRENT_DATE" "$tmp_file"
+    fi
+
+    mv "$tmp_file" "$file"
+
+    git add "$file"
+}
+
+# 스테이징된 마크다운 파일 목록
+staged_files=$(git diff --cached --name-only --diff-filter=d | grep -E '\.md$|\.markdown$')
+
+# 파일명에 공백이 있을 수 있으므로
+# IFS를 빈 값으로 설정하고 한 줄씩 읽어 처리
+echo "$staged_files" | while IFS= read -r file; do
+    # 파일이 존재하는 경우 처리
+    if [[ -f "$file" ]]; then
+        process_file "$file"
+        echo "Updated dates (created/modified) for: $file"
+    fi
+done
+
+exit 0

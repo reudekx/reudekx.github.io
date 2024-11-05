@@ -1,0 +1,61 @@
+{%- assign parts = include.content | split: '<h' -%}
+{%- assign last_level = 1 -%}
+{%- assign counts = "" | split: "" -%}
+{%- capture output -%}
+  {{ parts[0] }}
+  {%- assign subparts = parts[1] | slice:2, parts[1].size | split: "</h1>" | limit: 2 -%}
+  <h1><a href={{ page.url }}>{{ subparts[0] }}</a></h1>{{ subparts[1] }}
+  {%- if parts.size > 2 -%}
+    {%- for part in parts | offset: 2 -%}
+      {%- assign first_char = part | slice: 0 -%}
+      {%- if "23456789" contains first_char -%}
+        {%- assign curr_level = first_char | times: 1 -%}
+        {%- if curr_level == last_level -%}
+          {%- assign last_count = counts | last -%}
+          {%- assign new_count = last_count | plus: 1 -%}
+          {%- assign counts = counts | pop -%}
+          {%- assign counts = counts | push: new_count -%}
+          </details>
+        {%- elsif curr_level > last_level -%}
+          {%- assign counts = counts | push: 1 -%}
+        {%- else -%}
+          {%- assign level_diff = last_level | minus: curr_level -%}
+          {%- for i in (1..level_diff) -%}
+            {%- assign counts = counts | pop -%}
+            </details>
+          </details>
+          {%- endfor -%}
+          {%- assign last_count = counts | last -%}
+          {%- assign new_count = last_count | plus: 1 -%}
+          {%- assign counts = counts | pop -%}
+          {%- assign counts = counts | push: new_count -%}
+        {%- endif -%}
+        {%- assign number = counts | join: "." -%}
+        {%- assign end_tag = "</h" | append: curr_level | append: ">" -%}
+        {%- assign subparts = part | slice: 2, part.size | split: end_tag | limit: 2 -%}
+        <details open>
+          <summary>
+            <h{{ curr_level }} id="s-{{ number }}"><a href="#toc" class="section-number">{{ number }}.</a>{{ subparts[0] }}{{ end_tag }}
+          </summary>
+          {{ subparts[1] }}
+        {%- assign last_level = curr_level -%}
+      {%- else -%}
+        <h{{ part }}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture output2 -%}
+  {%- assign parts = output | split: '<div class="footnotes" role="doc-endnotes">' -%}
+  {{ parts[0] }}
+  {%- for i in (2..last_level) -%}
+    </details>
+  {%- endfor -%}
+  {%- if parts.size == 2 -%}
+    <div class="footnotes" role="doc-endnotes">
+    {{ parts[1] }}
+  {%- endif -%}
+{%- endcapture -%}
+
+{{ output2 }}

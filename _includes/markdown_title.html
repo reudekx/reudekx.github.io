@@ -1,0 +1,7 @@
+{%- assign parts = include.content | split: "</h1>" -%}
+
+{%- capture output -%}
+  {{ parts[0] }}</h1>
+{%- endcapture -%}
+
+{{ output }}

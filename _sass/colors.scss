@@ -1,0 +1,30 @@
+:root {
+  --color-background: #191919;
+  --color-document-background: #2e2e2e;
+  --color-text: #e9e9e9;
+  --color-link-internal: #dad340;
+  --color-link-external: #0edd30;
+  --color-blockquote-text: #e9e9e9;
+  --color-blockquote-background: #15333c;
+  --color-blockquote-border-left: #5078a0;
+  --color-code-background: #191919;
+  --color-code-text: #e9e9e9;
+  --color-pre-code-background: #191919;
+  --color-pre-code-text: #e9e9e9;
+}
+
+// 추후 구현 예정
+[data-theme="light"] {
+  --color-background: #c9b89a;
+  --color-document-background: #d1d1d1;
+  --color-text: #1d1d1d;
+  --color-link-internal: #fe7f50;
+  --color-link-external: #33ff33;
+  --color-blockquote-text: #171a15;
+  --color-blockquote-background: #ECDFCC;
+  --color-blockquote-border-left: #00ffcc;
+  --color-code-background: #3C3D37;
+  --color-code-text: #00ff99;
+  --color-pre-code-background: #3C3D37;
+  --color-pre-code-text: #ff99ff;
+}

@@ -1,0 +1,6 @@
+- name: HOME
+  link: /
+- name: DOCS
+  link: /docs
+- name: GITHUB
+  link: https://github.com/reudekx
