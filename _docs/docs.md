@@ -1,6 +1,7 @@
 ---
 created_date: 2024-11-05
-modified_date: 2024-11-05
+modified_date: 2024-11-06
+copyright: © 2024 reudekx · CC BY 4.0
 ---
 
 # DOCS
