@@ -83,10 +83,10 @@ template<typename T>
 constexpr auto VALUE_CATEGORY  = "prvalue";
 
 template<typename T>
-constexpr auto VALUE_CATEGORY <T&> = "lvalue";
+constexpr auto VALUE_CATEGORY<T&> = "lvalue";
 
 template<typename T>
-constexpr auto VALUE_CATEGORY <T&&> = "xvalue";
+constexpr auto VALUE_CATEGORY<T&&> = "xvalue";
 
 #define PRINT_VALUE_CATEGORY(expr) \
     std::cout << #expr << " is " << VALUE_CATEGORY<decltype((expr))> << std::endl
