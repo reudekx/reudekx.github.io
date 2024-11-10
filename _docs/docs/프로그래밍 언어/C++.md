@@ -141,6 +141,7 @@ const 한정자로 인해 오버로드 해결(overload resolution) 과정에서
 이는 복사 생성자 혹은 복사 대입 연산자이므로 이동 대신 복사 연산이 이뤄지게 된다.
 (애초에 const 객체는 수정이 불가능하므로 이동 연산의 대상이 될 수 없기도 하다.)
 
-## 참고 자료
+## 참고 웹사이트
 
-* [https://en.cppreference.com/w/](https://en.cppreference.com/w/) - 레퍼런스 사이트
+* [https://en.cppreference.com/w/](https://en.cppreference.com/w/) - C++ 레퍼런스
+* [https://godbolt.org/](https://godbolt.org/) - 간편하게 C/C++ 코드를 어셈블리어로 컴파일하여 확인 가능
