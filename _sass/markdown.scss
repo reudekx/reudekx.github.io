@@ -166,9 +166,15 @@
     margin-bottom: 1.2em;
   }
   
+
   ul, ol {
     padding-left: 1.5em;
     list-style-position: outside;
+    margin: 1.2em 0;
+  }
+
+  ul ul, ul ol, ol ul, ol ol {
+    margin: 0;
   }
 
   strong {
@@ -181,7 +187,6 @@
     }
 
     padding: 0.5em 1em;
-    margin: 16px 0;
     color: var(--color-blockquote-text);
     background: var(--color-blockquote-background);
     border-left: 4px solid var(--color-blockquote-border-left);
