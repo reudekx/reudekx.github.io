@@ -20,7 +20,7 @@ To reudekx:reudekx/reudekx.github.io.git
  ! [rejected]        main -> main (non-fast-forward)
 error: failed to push some refs to 'reudekx:reudekx/reudekx.github.io.git'
 ```
-따라서 다음과 같은 명령어를 통해 확인해보았다.
+따라서 아래의 명령어를 통해 확인해보았다.
 
 ```bash
 # 로컬의 커밋 히스토리 확인
@@ -30,7 +30,7 @@ git log --oneline origin/main
 # 두 브랜치를 비교
 git log --oneline --graph main origin/main # 혹은 단순하게 git log --oneline --graph --all
 ```
-다른 컴퓨터에서 문서 내용을 업데이트했던 것을 pull하지 않아 문제가 발생했다.
+다른 컴퓨터에서 문서 내용을 업데이트했던 것을 pull하지 않아 문제가 발생한 것이었다.
 혼자 사용하는 저장소이며 실수로 인해 벌어진 일이기도 하므로,
 `git rebase`를 통해 문제를 해결하기로 하였다.
 
@@ -39,4 +39,4 @@ git pull --rebase origin main
 # 혹은 git fetch origin && git rebase origin/main
 ```
 
-실행 결과, 충돌이 발생하지 않아 즉시 rebase가 완료되었다.
+실행 결과 충돌이 발생하지 않아 즉시 rebase가 완료되었다.
