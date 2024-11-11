@@ -10,7 +10,7 @@ copyright: © 2024 reudekx · CC BY 4.0
 
 Git을 사용하면서 겪은 문제해결 과정이나 명령어들을 정리하였다.
 
-### 충돌 해결
+## Rebase
 
 `git push`를 하였더니 다음과 같은 오류가 출력되었다.
 
@@ -24,11 +24,11 @@ error: failed to push some refs to 'reudekx:reudekx/reudekx.github.io.git'
 
 ```bash
 # 로컬의 커밋 히스토리 확인
-git log --oneline main
+git log --oneline main # 혹은 단순하게 git log --oneline
 # 원격의 커밋 히스토리 확인
 git log --oneline origin/main
 # 두 브랜치를 비교
-git log --oneline --graph main origin/main
+git log --oneline --graph main origin/main # 혹은 단순하게 git log --oneline --graph --all
 ```
 다른 컴퓨터에서 문서 내용을 업데이트했던 것을 pull하지 않아 문제가 발생했다.
 혼자 사용하는 저장소이며 실수로 인해 벌어진 일이기도 하므로,
@@ -38,3 +38,5 @@ git log --oneline --graph main origin/main
 git pull --rebase origin main
 # 혹은 git fetch origin && git rebase origin/main
 ```
+
+실행 결과, 충돌이 발생하지 않아 즉시 rebase가 완료되었다.
