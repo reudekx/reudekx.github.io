@@ -51,6 +51,8 @@ kramdown:
     block:
       start_line: 1
     css_class: 'highlight'
+    block:
+      line_numbers: true
 
   auto_ids: false
   parse_block_html: false
