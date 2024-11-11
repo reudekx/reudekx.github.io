@@ -195,15 +195,42 @@
     font-size: 0.95em;
   }
   
-  pre {
+  pre.highlight {
     color: var(--color-pre-code-text);
     background: var(--color-pre-code-background);
-    padding: 1em;
+    padding: 0.5em 0;
     margin: 0;
     font-size: 0.9em;
     font-weight: 600;
     display: block;
     overflow-x: auto;
+
+    .rouge-table {
+      border-collapse: collapse;
+
+      td {
+        border: none;
+      }
+    }
+
+    .rouge-gutter {
+      padding-left: 1em;
+      text-align: right;
+      user-select: none;
+      color: #606060a2;
+    }
+    
+    /* 실제 코드 열 */
+    .rouge-code {
+      font-weight: 600;
+    }
+    
+    /* 줄 번호와 코드의 pre 태그 */
+    .rouge-gutter pre, 
+    .rouge-code pre {
+      margin: 0;
+      padding: 0;
+    }
   }
 
   table {
