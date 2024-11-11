@@ -17,9 +17,9 @@
       {%- assign end_tag = "</h" | append: curr_level | append: ">" -%}
       {%- assign subparts = part | slice: 2, part.size | split: end_tag | limit: 1 -%}
       {%- assign subparts = subparts[0] | split: '<a href="#toc" class="section-number">' -%}
-      {%- assign subparts = subparts[1] | split: "</a>" -%}
+      {%- assign subparts = subparts[1] | split: "</a>"-%}
       {%- assign section_number = subparts[0] -%}
-      {%- assign section_title = subparts[1] -%}
+      {%- assign section_title = subparts | slice: 1, subparts.size | join: "</a>" -%}
       {%- assign index = section_number | size | minus: 1 -%}
       <li><a href="#s-{{ section_number | slice: 0, index }}" class="toc-section-number">{{ section_number }}</a>{{ section_title }}</li>
       {%- assign last_level = curr_level -%}
