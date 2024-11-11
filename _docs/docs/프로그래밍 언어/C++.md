@@ -197,7 +197,7 @@ main:
 
 > Whenever a prvalue appears as an operand of an operator that expects a glvalue for that operand, the temporary materialization conversion is applied to convert the expression to an xvalue.
 
-위 레퍼런스 문서에서는 이와 같은 **prvalue-to-xvalue conversion** 이외에도 **glvalue-to-prvalue conversion**에 대해서도 서술하고 있다.
+이러한 **prvalue-to-xvalue conversion** 이외에도 **glvalue-to-prvalue conversion**에 대해서도 서술하고 있다.
 
 > This conversion models the act of reading a value from a memory location into a CPU register.
 
