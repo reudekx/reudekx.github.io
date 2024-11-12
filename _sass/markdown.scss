@@ -166,6 +166,12 @@
     margin-bottom: 1.2em;
   }
   
+  hr {
+    height: 0;
+    border: none;
+    border-bottom: 1px solid;
+    border-color: color-mix(in srgb, currentColor 30%, transparent);
+  }
 
   ul, ol {
     padding-left: 1.5em;
