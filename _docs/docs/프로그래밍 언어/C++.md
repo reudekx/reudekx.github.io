@@ -1,6 +1,6 @@
 ---
 created_date: 2024-11-05
-modified_date: 2024-11-11
+modified_date: 2024-11-13
 copyright: © 2024 reudekx · CC BY 4.0
 ---
 
@@ -201,7 +201,7 @@ main:
 
 > This conversion models the act of reading a value from a memory location into a CPU register.
 
-자세한 사항은 앞선 링크를 참고할 것.
+자세한 내용은 앞선 링크를 참고할 것.
 
 
 ## 참고 웹사이트
