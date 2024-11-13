@@ -58,4 +58,8 @@
   {%- endif -%}
 {%- endcapture -%}
 
-{{ output2 }}
+{%- capture output3 -%}
+  {%- include process_external_link.html content=content -%}
+{%- endcapture -%}
+
+{{ output3 }}
