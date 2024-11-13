@@ -1,3 +1,4 @@
+{%- capture header -%}
 <header>
   <div class="container">
     <nav class="navigation">
@@ -9,3 +10,10 @@
     </nav>
   </div>
 </header>
+{%- endcapture -%}
+
+{%- capture output -%}
+  {%- include process_external_link.html content=header -%}
+{%- endcapture -%}
+
+{{ output }}
