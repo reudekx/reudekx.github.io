@@ -138,6 +138,14 @@
       opacity: 0.3;
     }
   }
+
+  details > *:not(summary) {
+    margin: 0;
+  }
+  
+  details > *:not(summary) + *:not(summary) {
+    margin-top: 1.2rem;
+  }
   
   h2 { font-size: 1.8rem; }
   h3 { font-size: 1.6rem; }
@@ -161,11 +169,6 @@
     }
   }
   
-  p {
-    margin-top: 1.2em;
-    margin-bottom: 1.2em;
-  }
-  
   hr {
     height: 0;
     border: none;
@@ -176,7 +179,6 @@
   ul, ol {
     padding-left: 1.5em;
     list-style-position: outside;
-    margin: 1.2em 0;
   }
 
   ul ul, ul ol, ol ul, ol ol {
@@ -251,16 +253,16 @@
     display: block;
     overflow-x: auto;
     white-space: nowrap;
-  }
-  
-  th {
-    border: 1px solid #ddd;
-    padding: 0.75rem;
-  }
-  
-  td {
-    border: 1px solid #ddd;
-    padding: 0.75rem;
+
+    th {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+    }
+    
+    td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+    }
   }
 
   .footnotes {
