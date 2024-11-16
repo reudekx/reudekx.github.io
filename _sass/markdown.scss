@@ -42,7 +42,7 @@
 
 .markdown-toc {
   display: inline-block;
-  background-color: var(--color-background);
+  background-color: var(--color-document-secondary-background);
   border: 1px solid color-mix(in srgb, currentColor 90%, transparent);
   padding: 1em;
   margin-bottom: 1.5rem;
@@ -74,7 +74,7 @@
 .markdown-tree {
   display: inline-block;
   width: auto;
-  background-color: var(--color-background);
+  background-color: var(--color-document-secondary-background);
   border: 1px solid color-mix(in srgb, currentColor 90%, transparent);
   padding: 1em;
   margin-bottom: 1rem;
