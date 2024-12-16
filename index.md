@@ -1,6 +1,6 @@
 ---
 created_date: 2024-11-05
-modified_date: 2024-11-11
+modified_date: 2024-12-16
 copyright: © 2024 reudekx · CC BY 4.0
 title: HOME
 ---
@@ -10,6 +10,13 @@ title: HOME
 ## 소개
 
 학습 내용을 정리하여 올리는 블로그 겸 개인 위키입니다.
+
+## 블로그 개편 예정
+
+최근 홈서버를 구매하여.. 이에 제약이 많았던 Github Pages를 통한 기본 배포를 포기하고
+블로그를 좀 더 자유롭게 다시 제작해 보려고 한다.
+
+언제 작업할지는 아직 미정..
 
 ## [DOCS](/docs)
 
