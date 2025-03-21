@@ -1,0 +1,54 @@
+title: "reudekx의 블로그"
+description: "reudekx's Development Blog"
+url: "https://reudekx.github.io"
+baseurl: ""
+author: "reudekx"
+
+repository: reudekx/reudekx.github.io
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+
+encoding: UTF-8
+permalink: pretty
+
+collections:
+  wiki:
+    output: true
+    permalink: /:path
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: document
+
+verbose: true 
+
+compress_html:
+  clippings: all     # HTML 태그 주변 공백 제거
+  comments: all      # HTML 주석 제거
+  endings: all       # 태그 끝부분 공백 제거
+  profile: false     # 압축 프로파일링 비활성화
+  blanklines: false  # 빈 줄 제거
+  ignore:
+    envs: [development]  # 개발 환경에서는 압축 건너뛰기
+
+sass:
+  style: compressed  # CSS 파일 압축
+
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      start_line: 1         # 코드 블록 시작 줄 번호
+      line_numbers: false    # 줄 번호 표시
+    css_class: 'highlight'  # 구문 강조 CSS 클래스
+  auto_ids: false          # 헤더에 자동 ID 생성 비활성화
+  parse_block_html: false  # HTML 블록 내 마크다운 파싱 비활성화
+  parse_span_html: false   # HTML 인라인 요소 내 마크다운 파싱 비활성화
+  footnote_backlink: "↩"   # 각주 역링크 심볼

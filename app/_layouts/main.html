@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<article class="document">
+    <div class="container">
+        <div class="title-summary">
+            <div class="title">{{ content | doc_title }}</div>
+            {%- if page.summary -%}
+            <div class="summary">{{ page.summary }}</div>
+            {%- endif -%}
+        </div>
+        <div class="content">{{ content }}</div>
+    </div>
+</article>

@@ -1,0 +1,56 @@
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+html, body {
+  height: 100%;
+}
+
+
+body {
+  background-color: var(--color-background-default);
+  color: var(--color-text-default);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body {
+  >* {
+    margin: 1.0rem 0;
+  }
+
+  // 첫 번째 자식 요소의 상단 마진 제거
+  >*:first-child {
+    margin-top: 0;
+  }
+
+  // 마지막 자식 요소의 하단 마진 제거
+  >*:last-child {
+    margin-bottom: 0;
+  }
+}
+
+main {
+  flex: 1;
+}
+
+h1, h2, h3, h4 ,h5, h6 {
+  font-family: "Noto Sans KR", sans-serif;
+}

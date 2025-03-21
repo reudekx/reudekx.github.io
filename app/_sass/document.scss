@@ -1,0 +1,377 @@
+.document {
+    background-color: var(--color-background-document);
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.0rem;
+    
+}
+
+.document>.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1rem;
+}
+
+.document .title {
+    color: var(--color-text-title);
+    font-size: 2.0rem;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+}
+
+.document .summary {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--color-text-summary);
+    padding-left: 0.2rem;
+}
+
+.document .paths {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    .path {
+        white-space: nowrap;
+        display: inline-block;
+    }
+}
+
+.document .dates {
+    width: 100%;    
+    text-align: right;
+    color: var(--color-text-dates);
+}
+
+.document .tags {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    .tag {
+        white-space: nowrap;
+        display: inline-block;
+    }
+}
+
+.document {
+    .paths, .tags, .toc, .content {
+        a {
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+    
+            &:hover {
+                opacity: 0.65;
+            }
+        }
+    
+        a[href^="#"],
+        a[href^="/"],
+        a[href^="./"],
+        a[href^="../"] {
+            color: var(--color-text-link-internal);
+        }
+    
+        a:not([href^="#"]):not([href^="/"]):not([href^="./"]):not([href^="../"]) {
+            color: var(--color-text-link-external);
+        }
+    }
+}
+
+.document .toc {
+    background-color: var(--color-background-toc);
+    color: var(--color-text-toc);
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    margin-bottom: 2.0rem;
+
+    .text {
+        color: var(--color-text-h2);
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 1.0rem;
+        border-bottom: 2px solid;
+        width: fit-content;
+    }
+
+    .tree {
+        overflow-x: auto;
+
+        ul {
+            list-style-type: none;
+            padding-left: 1.0rem;
+        }
+    
+        ul ul {
+            padding-left: 2.0rem;
+        }
+    }
+}
+
+.document {
+    .toc, .content {
+        a.footnote {
+            position: relative;
+            text-decoration: none;
+            font-size: 0.8rem !important;
+            font-weight: normal !important;
+    
+            &:before {
+                content: "[";
+            }
+    
+            &:after {
+                content: "]";
+            }
+        }
+    }
+}
+
+.document .content {
+    width: 100%;
+
+    >* {
+        margin-top: 0;
+        margin-bottom: 1.0rem;
+    }
+
+    >*:last-child {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        color: var(--color-text-h2);
+        font-size: 1.75rem;
+        padding-top: 1.75rem;
+        border-bottom: 2px solid;
+
+        // >.sec-title {
+        //     border-bottom: 2px solid;
+        // }
+
+        &:first-of-type {
+            padding-top: 0;
+        }
+    }
+
+    h3 {
+        color: var(--color-text-h3);
+        font-size: 1.5rem;
+        padding-top: 1.0rem;
+
+        border-bottom: 2px solid;
+        // font-style: italic;
+        width: fit-content;
+
+        // >.sec-title {
+        //     border-bottom: 2px solid;
+        //     width: fit-content;
+        // }
+    }
+
+    h4 {
+        color: var(--color-text-h4);
+        font-size: 1.25rem;
+        padding-top: 0.75rem;
+    }
+
+    h5 {
+        color: var(--color-text-h5);
+        font-size: 1.0rem;
+        padding-top: 0.5rem;
+    }
+
+    h6 {
+        color: var(--color-text-h6);
+        font-size: 1.0rem;
+        padding-top: 0.25rem;
+    }
+
+    .toc-backlink {
+        opacity: 0.2;
+        transition: opacity 0.2s ease-in-out;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    strong {
+        color: var(--color-text-highlight);
+    }
+
+    code:not(pre code) {
+        font-family: "Menlo", "Consolas", "Roboto Mono", "Ubuntu Monospace", "Noto Mono", "Oxygen Mono", "Liberation Mono", monospace;
+        color: var(--color-text-code);
+        background-color: var(--color-background-code);
+        padding: 0.1rem;
+        border-radius: 4px;
+    }
+
+    .code-highlight {
+        display: inline-block;
+        max-width: 100%;
+        width: max-content;
+
+        .highlighter-rouge {
+            overflow-x: auto;
+        }
+
+        figcaption {
+            display: none;
+            color: var(--color-text-code-highlight-caption);
+            background-color: var(--color-background-code-highlight-caption);
+            padding: 0.25rem 1rem;
+            font-style: italic;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            border-bottom: 2px dashed var(--color-background-document);
+            text-align: center;
+        }
+
+        pre code {
+            color: var(--color-text-code-highlight);
+            background-color: var(--color-background-code-highlight);
+            display: inline-block;
+            padding: 0.6rem;
+            font-size: 0.9rem;
+            font-family: "Menlo", "Consolas", "Roboto Mono", "Ubuntu Monospace", "Noto Mono", "Oxygen Mono", "Liberation Mono", monospace;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+            tab-size: 4;
+            -moz-tab-size: 4;
+        }
+
+    }
+
+    ul,
+    ol {
+        padding-left: 1.5rem;
+        // list-style-position: outside;
+    }
+
+    blockquote {
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        color: var(--color-text-blockquote);
+        background-color: var(--color-background-blockquote);
+        border-left: 4px solid var(--color-border-blockquote);
+        padding: 0.5rem 1.0rem;
+        margin: 1.0rem 0;
+    }
+
+    table {
+        border-collapse: collapse;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+
+        th,
+        td {
+            border: 1px solid var(--color-border-table);
+            padding: 6px;
+        }
+
+        th {
+            color: var(--color-text-th);
+            background-color: var(--color-background-th);
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--color-background-tr-even);
+        }
+
+        tr:nth-child(odd) {
+            background-color: var(--color-background-tr-odd);
+        }
+    }
+
+    .footnotes {
+        ol {
+            list-style-type: none;
+            counter-reset: footnote-counter;
+            padding-left: 0;
+        }
+
+        ol li {
+            counter-increment: footnote-counter;
+            position: relative;
+        }
+
+        ol li a.reversefootnote {
+            visibility: hidden;
+            position: relative;
+            display: inline-block;
+        }
+
+        ol li a.reversefootnote:after {
+            content: "[" counter(footnote-counter) "]";
+            visibility: visible;
+            position: absolute;
+            left: 0;
+        }
+    }
+
+    hr {
+        height: 0;
+        border: none;
+        border-bottom: 1px solid;
+    }
+
+    .image {
+        max-width: 100%;
+        width: max-content;
+
+        .img-container {
+            max-width: 100%;
+            overflow-x: auto;
+            display: inline-block;
+        }
+
+        img {
+            display: block;
+        }
+
+        figcaption {
+            color: var(--color-text-image-caption);
+            padding: 0.25rem 1rem;
+            font-style: italic;
+            text-align: center;
+        }
+    }
+
+    .task-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .info-list {
+        .info-title, .info-date {
+            margin-right: 10px;
+        }
+
+        .info-summary {
+            font-style: italic;
+            color: var(--color-text-summary);
+            padding-left: 0rem;
+        }
+    }
+
+}

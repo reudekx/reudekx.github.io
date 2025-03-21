@@ -1,0 +1,82 @@
+name: Build and Deploy to GitHub Pages
+
+# workflow 실행 조건
+on:
+  push:
+    branches: ["main"]
+  repository_dispatch:
+    types: [wiki-updated]
+  workflow_dispatch:
+
+# workflow 권한 설정
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 동시성 제어
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+# job 설정
+jobs:
+  # 블로그 빌드
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 메인 저장소 체크아웃
+      - name: Checkout Main Repository
+        uses: actions/checkout@v4
+        with:
+          path: main-repo
+      
+      # private wiki 저장소 체크아웃
+      - name: Checkout Private Wiki Repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.WIKI_REPO }}
+          token: ${{ secrets.WIKI_REPO_PAT }}
+          path: wiki-repo
+
+      # wiki-repo를 app 폴더로 복사
+      - name: Copy Wiki Content
+        run: |
+          mkdir -p app/_wiki/wiki
+          cp -r wiki-repo/wiki/* app/_wiki/wiki/
+
+      # ruby 및 의존성 설치
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.7'
+          bundler-cache: true
+      
+      # Github Pages 배포를 위한 설정
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      
+      # Jekyll 빌드
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --source app
+        env:
+          JEKYLL_ENV: production
+      
+      # Artifact 업로드 (default artifact name: github-pages)
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_site"
+  
+  # GitHub Pages 배포
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      # Artifact 배포 (default artifact name: github-pages)
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

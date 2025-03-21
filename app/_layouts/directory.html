@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<article class="document">
+    <div class="container">
+        <div class="title-summary">
+            <div class="title">{{ content | doc_title }}</div>
+            {%- if page.summary -%}
+            <div class="summary">{{ page.summary }}</div>
+            {%- endif -%}
+        </div>
+        <div class="paths">
+            <a href="/" class="path">메인</a>
+            {%- assign path_parts = page.path | remove: ".md" | remove: ".html" | split: "/" | shift -%}
+            {%- assign link = "" -%}
+            {%- for part in path_parts -%}
+                {% assign link = link | append: "/" | append: part %}
+                <span>/</span>
+                <a href="{{ link }}" class="path">{{ part }}</a>
+            {%- endfor -%}
+        </div>
+        <div class="content">
+            {{ content }}
+            <h2>서브 디렉터리</h2>
+            {% subdirs %}
+            <h2>하위 문서</h2>
+            {% child_docs %}
+        </div>
+    </div>
+</article>

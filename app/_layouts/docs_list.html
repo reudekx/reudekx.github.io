@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<article class="document">
+    <div class="container">
+        <div class="title-summary">
+            <div class="title">{{ content | doc_title }}</div>
+            {%- if page.summary -%}
+            <div class="summary">{{ page.summary }}</div>
+            {%- endif -%}
+        </div>
+        <div class="paths">
+            <a href="/" class="path">메인</a>
+            <span>/</span>
+            <a href="/all" class="path">문서 목록</a>
+        </div>
+        
+        <div class="content">
+            {{ content }}
+            <h2>문서 목록</h2>
+            {% docs_list %}
+        </div>
+    </div>
+</article>
