@@ -4,6 +4,9 @@ name: Build and Deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
+    paths:
+      - "app/**"
+      - ".github/workflows/build-and-deploy.yml"
   repository_dispatch:
     types: [wiki-updated]
   workflow_dispatch:
