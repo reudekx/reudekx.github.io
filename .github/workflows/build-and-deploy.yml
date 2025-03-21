@@ -28,8 +28,6 @@ jobs:
       # 메인 저장소 체크아웃
       - name: Checkout Main Repository
         uses: actions/checkout@v4
-        with:
-          path: main-repo
       
       # private wiki 저장소 체크아웃
       - name: Checkout Private Wiki Repository
