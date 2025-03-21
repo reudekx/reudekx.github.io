@@ -248,7 +248,7 @@ module Jekyll
 
       tags.each do |tag, count|
         html += "<li>"
-        html += %(<span class="info-title"><a href="/tags/#{CGI.escape(tag)}/">#{tag}</a></span>)
+        html += %(<span class="info-title"><a href="/tags/#{CGI.escape(tag)}">#{tag}</a></span>)
         html += %(<br><span class="info-summary">#{count}개의 문서가 있습니다.</span>)
         html += "</li>"
       end
