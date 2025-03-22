@@ -1,19 +1,35 @@
 .document {
-    background-color: var(--color-background-document);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     max-width: 900px;
     margin: 0 auto;
     padding: 1.0rem;
-    
-    border: 1px dashed var(--color-text-default);
 }
 
 .document>.container {
+    flex: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
-    width: 100%;
     gap: 1rem;
+    padding: 1.0rem;
+    background-color: var(--color-background-document);
+    border: 1px dashed var(--color-text-default);
+}
+
+@media (max-width: 768px) {
+    .document {
+        padding: 0;
+    }
+
+    .document>.container {
+        border-left: none;
+        border-right: none;
+    }
 }
 
 .document .title {
