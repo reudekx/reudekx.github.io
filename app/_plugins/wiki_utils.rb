@@ -7,6 +7,32 @@ module Jekyll
       url.split("/").map { |part| CGI.escape(part) }.join("/")
     end
 
+    # 공통 HTML 생성 함수 추가
+    def self.render_info_list(docs_list)
+      html = %(<ul class="info-list">)
+
+      docs_list.each do |doc|
+        html += "<li>"
+        html += %(<span class="info-title"><a href="#{doc["url"]}">#{doc["title"]}</a></span>)
+        if doc["updated_at"]
+          html += %(<span class="info-date">#{doc["updated_at"].strftime("%Y-%m-%d")}</span>)
+        end
+        if doc["tags"] && !doc["tags"].empty?
+          html += %(<span class="info-tag-list">)
+          html += doc["tags"].map { |tag| %(<a href="#{escape_url("/tags/#{tag}")}" class="info-tag">##{tag}</a>) }.join(" ")
+          html += %(</span>)
+        end
+        if doc["summary"]
+          html += %(<br><span class="info-summary">&#8251; #{doc["summary"]}</span>)
+        end
+        html += "</li>"
+      end
+
+      html += "</ul>"
+
+      html
+    end
+
     def self.get_docs_list(collection)
       return [] unless collection
 
@@ -18,33 +44,25 @@ module Jekyll
 
         title = CGI.unescape(doc.url.sub(/^\/wiki\//, ""))
 
-        docs_list << {
+        doc_info = {
           "title" => title,
           "url" => doc.url,
           "summary" => doc["summary"],
           "updated_at" => doc["updated_at"]
         }
+
+        if doc.data["tags"]
+          tags = doc.data["tags"]
+          tags = [tags] unless tags.is_a?(Array)
+          doc_info["tags"] = tags.map(&:to_s).reject(&:empty?)
+        end
+
+        docs_list << doc_info
       end
 
       docs_list = docs_list.sort_by { |doc| doc["title"].downcase }
 
-      html = %(<ul class="info-list">)
-
-      docs_list.each do |doc|
-        html += "<li>"
-        html += %(<span class="info-title"><a href="#{doc["url"]}">#{doc["title"]}</a></span>)
-        if doc["updated_at"]
-          html += %(<span class="info-date">#{doc["updated_at"].strftime("%Y-%m-%d")}</span>)
-        end
-        if doc["summary"]
-          html += %(<br><span class="info-summary">#{doc["summary"]}</span>)
-        end
-        html += "</li>"
-      end
-
-      html += "</ul>"
-
-      html
+      render_info_list(docs_list)
     end
 
     def self.get_recent_docs(collection, limit = nil)
@@ -58,12 +76,20 @@ module Jekyll
 
         title = CGI.unescape(doc.url.sub(/^\/wiki\//, ""))
 
-        recent_docs << {
+        doc_info = {
           "title" => title,
           "url" => doc.url,
           "summary" => doc["summary"],
           "updated_at" => doc["updated_at"]
         }
+
+        if doc.data["tags"]
+          tags = doc.data["tags"]
+          tags = [tags] unless tags.is_a?(Array)
+          doc_info["tags"] = tags.map(&:to_s).reject(&:empty?)
+        end
+
+        recent_docs << doc_info
       end
       recent_docs = recent_docs.sort_by { |doc| doc["updated_at"] || Time.new(1970, 1, 1) }.reverse
 
@@ -71,23 +97,7 @@ module Jekyll
         recent_docs = recent_docs.take(limit)
       end
 
-      html = %(<ul class="info-list">)
-
-      recent_docs.each do |doc|
-        html += "<li>"
-        html += %(<span class="info-title"><a href="#{doc["url"]}">#{doc["title"]}</a></span>)
-        if doc["updated_at"]
-          html += %(<span class="info-date">#{doc["updated_at"].strftime("%Y-%m-%d")}</span>)
-        end
-        if doc["summary"]
-          html += %(<br><span class="info-summary">#{doc["summary"]}</span>)
-        end
-        html += "</li>"
-      end
-
-      html += "</ul>"
-
-      html
+      render_info_list(recent_docs)
     end
 
     def self.get_child_docs(collection, page)
@@ -108,33 +118,25 @@ module Jekyll
 
         next if doc_dir != page_path
 
-        child_docs << {
+        doc_info = {
           "title" => doc["title"],
           "url" => doc.url,
           "summary" => doc["summary"],
           "updated_at" => doc["updated_at"]
         }
+
+        if doc.data["tags"]
+          tags = doc.data["tags"]
+          tags = [tags] unless tags.is_a?(Array)
+          doc_info["tags"] = tags.map(&:to_s).reject(&:empty?)
+        end
+
+        child_docs << doc_info
       end
 
       child_docs = child_docs.sort_by { |doc| doc["title"].downcase }
 
-      html = %(<ul class="info-list">)
-
-      child_docs.each do |doc|
-        html += "<li>"
-        html += %(<span class="info-title"><a href="#{doc["url"]}">#{doc["title"]}</a></span>)
-        if doc["updated_at"]
-          html += %(<span class="info-date">#{doc["updated_at"].strftime("%Y-%m-%d")}</span>)
-        end
-        if doc["summary"]
-          html += %(<br><span class="info-summary">#{doc["summary"]}</span>)
-        end
-        html += "</li>"
-      end
-
-      html += "</ul>"
-
-      html
+      render_info_list(child_docs)
     end
 
     def self.get_subdirs(collection, page)
@@ -200,25 +202,18 @@ module Jekyll
 
       subdirs = subdirs.sort_by { |path, subdir| subdir["title"].downcase }
 
-      html = %(<ul class="info-list">)
-
-      subdirs.each do |path, subdir|
+      docs_list = subdirs.map do |path, subdir|
         doc_count = subdir_counts[path] ? subdir_counts[path]["docs"] : 0
         subdir_count = subdir_counts[path] ? subdir_counts[path]["subdirs"] : 0
 
-        html += "<li>"
-
-        html += %(<span class="info-title"><a href="#{subdir["url"]}">#{subdir["title"]}</a></span>)
-
-        summary = "#{doc_count}개의 하위 문서와 #{subdir_count}개의 서브 디렉터리가 있습니다."
-        html += %(<br><span class="info-summary">#{summary}</span>)
-
-        html += "</li>"
+        {
+          "title" => subdir["title"],
+          "url" => subdir["url"],
+          "summary" => "#{doc_count}개의 하위 문서와 #{subdir_count}개의 서브 디렉터리가 있습니다."
+        }
       end
 
-      html += "</ul>"
-
-      html
+      render_info_list(docs_list)
     end
 
     def self.get_tags(collection)
@@ -244,18 +239,15 @@ module Jekyll
 
       tags = tags.sort_by { |tag, count| tag.downcase }
 
-      html = %(<ul class="info-list">)
-
-      tags.each do |tag, count|
-        html += "<li>"
-        html += %(<span class="info-title"><a href="/tags/#{CGI.escape(tag)}">#{tag}</a></span>)
-        html += %(<br><span class="info-summary">#{count}개의 문서가 있습니다.</span>)
-        html += "</li>"
+      docs_list = tags.map do |tag, count|
+        {
+          "title" => tag,
+          "url" => "/tags/#{CGI.escape(tag)}",
+          "summary" => "#{count}개의 문서가 있습니다."
+        }
       end
 
-      html += "</ul>"
-
-      html
+      render_info_list(docs_list)
     end
 
     def self.get_docs_by_tag(collection, tag)
@@ -272,33 +264,21 @@ module Jekyll
 
         next unless tags.include?(tag)
 
-        tag_docs << {
+        doc_info = {
           "title" => doc["title"],
           "url" => doc.url,
           "summary" => doc["summary"],
           "updated_at" => doc["updated_at"]
         }
+
+        doc_info["tags"] = tags.map(&:to_s).reject(&:empty?)
+
+        tag_docs << doc_info
       end
 
       tag_docs = tag_docs.sort_by { |doc| doc["title"].downcase }
 
-      html = %(<ul class="info-list">)
-
-      tag_docs.each do |doc|
-        html += "<li>"
-        html += %(<span class="info-title"><a href="#{doc["url"]}">#{doc["title"]}</a></span>)
-        if doc["updated_at"]
-          html += %(<span class="info-date">#{doc["updated_at"].strftime("%Y-%m-%d")}</span>)
-        end
-        if doc["summary"]
-          html += %(<br><span class="info-summary">#{doc["summary"]}</span>)
-        end
-        html += "</li>"
-      end
-
-      html += "</ul>"
-
-      html
+      render_info_list(tag_docs)
     end
   end
 end
