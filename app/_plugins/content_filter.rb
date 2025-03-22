@@ -32,7 +32,7 @@ module Jekyll
 
         # 기존 링크 보존하면서 번호 추가
         heading.inner_html = if heading.name == "h2"
-          %(<div id="sec-#{id}" class="sec-title">#{heading.inner_html} <a href="#toc" class="toc-backlink">#</a></div>)
+          %(<div id="sec-#{id}" class="sec-title">#{heading.inner_html}</div><a href="#toc" class="toc-backlink">&#8634;</a>)
         # elsif heading.name == "h3"
         #   %(<div id="sec-#{id}" class="sec-title">#{numbers[level - 1]}. #{heading.inner_html}</div>)
         else
