@@ -66,7 +66,7 @@ module Jekyll
       )
 
       tag_doc.data.merge!({
-        "title" => tag,
+        "title" => %(##{tag}),
         "summary" => %("#{tag}" 태그가 붙은 문서 목록),
         "layout" => "tag",
         "tag" => tag,

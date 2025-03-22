@@ -105,7 +105,7 @@
         font-size: 1.8rem;
         font-weight: bold;
         margin-bottom: 1.0rem;
-        border-bottom: 2px solid;
+        border-bottom: 2px solid color-mix(in srgb, currentColor 50%, transparent);;
         width: fit-content;
     }
 
@@ -158,7 +158,7 @@
         color: var(--color-text-h2);
         font-size: 1.75rem;
         padding-top: 1.75rem;
-        border-bottom: 2px solid;
+        border-bottom: 2px solid color-mix(in srgb, currentColor 50%, transparent);
 
         // >.sec-title {
         //     border-bottom: 2px solid;
@@ -174,7 +174,7 @@
         font-size: 1.5rem;
         padding-top: 1.0rem;
 
-        border-bottom: 2px solid;
+        border-bottom: 2px solid color-mix(in srgb, currentColor 50%, transparent);
         // font-style: italic;
         width: fit-content;
 
@@ -365,6 +365,14 @@
     .info-list {
         .info-title, .info-date {
             margin-right: 10px;
+        }
+
+        .info-tag-list {
+            color: var(--color-text-default);
+            
+            .info-tag {
+                color: color-mix(in srgb, currentColor 70%, transparent);
+            }
         }
 
         .info-summary {
