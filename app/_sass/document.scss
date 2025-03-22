@@ -358,12 +358,15 @@
 
         .img-container {
             max-width: 100%;
-            overflow-x: auto;
+            // overflow-x: auto;
             display: inline-block;
         }
 
         img {
             display: block;
+            max-width: 100%;
+            max-height: 500px;
+            height: auto;
         }
 
         figcaption {
