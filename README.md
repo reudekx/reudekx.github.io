@@ -39,5 +39,5 @@ bundle exec jekyll new subdir --blank
 서브 디렉터리에 대해 실행하는 경우 `--source` 옵션으로 명시
 
 ```bash
-bundle exec jekyll serve --livereload --source subdir
+bundle exec jekyll serve --source subdir --livereload
 ```
