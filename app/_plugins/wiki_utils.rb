@@ -4,7 +4,7 @@ require "uri"
 module Jekyll
   module WikiUtils
     def self.escape_url(url)
-      url.split("/").map { |part| CGI.escape(part) }.join("/")
+      url.split("/").map { |part| CGI.escape(part).gsub("+", "%20") }.join("/")
     end
 
     # 공통 HTML 생성 함수 추가
