@@ -36,6 +36,8 @@ body {
   color: var(--color-text-default);
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  max-width: 900px;
   min-height: 100vh;
 }
 
@@ -44,21 +46,19 @@ body {
     margin: 1.0rem 0;
   }
 
-  // 첫 번째 자식 요소의 상단 마진 제거
-  >*:first-child {
-    margin-top: 0;
-  }
+  // // 첫 번째 자식 요소의 상단 마진 제거
+  // >*:first-child {
+  //   margin-top: 0;
+  // }
 
-  // 마지막 자식 요소의 하단 마진 제거
-  >*:last-child {
-    margin-bottom: 0;
-  }
+  // // 마지막 자식 요소의 하단 마진 제거
+  // >*:last-child {
+  //   margin-bottom: 0;
+  // }
 }
 
 main {
   flex: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 h1, h2, h3, h4 ,h5, h6 {

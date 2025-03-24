@@ -10,7 +10,7 @@ module Jekyll
       return unless collection
 
       docs_list_doc = Jekyll::Document.new(
-        File.join(collection.directory, "/meta/all.md"),
+        File.join(collection.directory, "/meta/docs.md"),
         site: site,
         collection: collection
       )
@@ -19,7 +19,7 @@ module Jekyll
         "title" => "문서 목록",
         "summary" => "위키의 모든 문서 목록입니다",
         "layout" => "docs_list",
-        "permalink" => "/all",
+        "permalink" => "/docs",
         "generated" => true
       })
 
