@@ -168,65 +168,73 @@
         margin-bottom: 0;
     }
 
-    h2, h3, h4, h5, h6 {
-        font-weight: normal;
+    * + h2, * + h3, * + h4, * + h5, * + h6 {
+        margin-bottom: 0;
     }
 
+    h2, h3, h4, h5, h6 {
+        font-weight: normal;
+        margin-top: 3.0rem;
+        margin-bottom: 2.0rem;
+    }
+    
+    h2 + h2, h2 + h3, h2 + h4, h2 + h5, h2 + h6,
+    h3 + h2, h3 + h3, h3 + h4, h3 + h5, h3 + h6,
+    h4 + h2, h4 + h3, h4 + h4, h4 + h5, h4 + h6,
+    h5 + h2, h5 + h3, h5 + h4, h5 + h5, h5 + h6,
+    h6 + h2, h6 + h3, h6 + h4, h6 + h5, h6 + h6 {
+        margin-top: 0;
+    }
+    
     h2 {
         position: relative;
         color: var(--color-text-h2);
         font-size: 1.75rem;
-        padding-top: 1.75rem;
         border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
-
-        &:first-of-type {
-            padding-top: 0;
-        }
-
-        .toc-backlink {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            opacity: 0.5;
-            transition: opacity 0.2s ease-in-out;
-    
-            &:hover {
-                opacity: 1;
-            }
-        }
     }
-
+    
+    h2:first-of-type {
+        margin-top: 0;
+    }
+    
+    h2 .toc-backlink {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        opacity: 0.5;
+        transition: opacity 0.2s ease-in-out;
+    }
+    
+    h2 .toc-backlink:hover {
+        opacity: 1;
+    }
+    
     h3 {
         color: var(--color-text-h3);
         font-size: 1.5rem;
-        padding-top: 1.0rem;
-
-        // border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
         font-style: italic;
-        width: fit-content;
-
-        // >.sec-title {
-        //     border-bottom: 2px solid;
-        //     width: fit-content;
-        // }
+        border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
     }
-
+    
     h4 {
         color: var(--color-text-h4);
         font-size: 1.25rem;
-        padding-top: 0.75rem;
+        font-style: italic;
+        border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
     }
-
+    
     h5 {
         color: var(--color-text-h5);
         font-size: 1.0rem;
-        padding-top: 0.5rem;
+        font-style: italic;
+        border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
     }
-
+    
     h6 {
         color: var(--color-text-h6);
         font-size: 1.0rem;
-        padding-top: 0.25rem;
+        font-style: italic;
+        border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
     }
 
     strong {
