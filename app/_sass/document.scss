@@ -293,8 +293,8 @@
 
     blockquote {
         max-width: 100%;
-        overflow-x: auto;
-        white-space: nowrap;
+        // overflow-x: auto;
+        // white-space: nowrap;
         color: var(--color-text-blockquote);
         background-color: var(--color-background-blockquote);
         border-left: 3px solid var(--color-border-blockquote);
@@ -372,6 +372,7 @@
 
         img {
             display: block;
+            background-color: #ffffff;
             max-width: 100%;
             max-height: 500px;
             height: auto;
