@@ -367,10 +367,10 @@
     .image {
         max-width: 100%;
         width: max-content;
+        text-align: center;
 
         .img-container {
             max-width: 100%;
-            // overflow-x: auto;
             display: inline-block;
         }
 
@@ -384,7 +384,7 @@
 
         figcaption {
             color: var(--color-text-image-caption);
-            padding: 0.25rem 1rem;
+            padding: 0.25rem 0;
             font-style: italic;
             text-align: center;
         }
