@@ -4,11 +4,11 @@ module Jekyll
       page = @context.registers[:page]
 
       title = %(<h1><a href="#{page["link"]}">)
-      
-      title += if page["name"]
-        File.basename(page["name"], ".*")
-      else
+
+      title += if page["title"]
         page["title"]
+      elsif page["name"]
+        File.basename(page["name"], ".*")
       end
 
       title += %(</a></h1>)
