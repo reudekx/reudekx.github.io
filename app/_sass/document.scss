@@ -305,6 +305,16 @@
         // list-style-position: outside;
     }
 
+    ul {
+        list-style-type: square;
+    }
+
+    ol > li::marker {
+        font-weight: bold;
+        color: #ffffff; /* 원하는 색상으로 변경 */
+        font-style: italic;
+    }
+
     blockquote {
         max-width: 100%;
         // overflow-x: auto;
