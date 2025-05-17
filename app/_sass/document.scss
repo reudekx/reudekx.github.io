@@ -183,7 +183,7 @@
     }
     
     h2 {
-        position: relative;
+        // position: relative;
         color: var(--color-text-h2);
         font-size: 1.75rem;
         border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
@@ -193,43 +193,43 @@
         margin-top: 0;
     }
     
-    h2 .toc-backlink {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        opacity: 0.5;
-        transition: opacity 0.2s ease-in-out;
-    }
+    // h2 .toc-backlink {
+    //     position: absolute;
+    //     right: 0;
+    //     bottom: 0;
+    //     opacity: 0.5;
+    //     transition: opacity 0.2s ease-in-out;
+    // }
     
-    h2 .toc-backlink:hover {
-        opacity: 1;
-    }
+    // h2 .toc-backlink:hover {
+    //     opacity: 1;
+    // }
     
     h3 {
         color: var(--color-text-h3);
         font-size: 1.5rem;
-        font-style: italic;
+        // font-style: italic;
         border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
     }
     
     h4 {
         color: var(--color-text-h4);
         font-size: 1.25rem;
-        font-style: italic;
+        // font-style: italic;
         border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
     }
     
     h5 {
         color: var(--color-text-h5);
         font-size: 1.0rem;
-        font-style: italic;
+        // font-style: italic;
         border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
     }
     
     h6 {
         color: var(--color-text-h6);
         font-size: 1.0rem;
-        font-style: italic;
+        // font-style: italic;
         border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
     }
 

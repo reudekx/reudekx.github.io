@@ -28,16 +28,10 @@ module Jekyll
         # ID 생성
         id = numbers[0..level - 1].join("-")
 
-        # sec_num = numbers[0..level - 1].join(".")
+        sec_num = numbers[0..level - 1].join(".")
 
         # 기존 링크 보존하면서 번호 추가
-        heading.inner_html = if heading.name == "h2"
-          %(<div id="sec-#{id}" class="sec-title">#{heading.inner_html}</div><a href="#toc" class="toc-backlink">&#8634;</a>)
-        # elsif heading.name == "h3"
-        #   %(<div id="sec-#{id}" class="sec-title">#{numbers[level - 1]}. #{heading.inner_html}</div>)
-        else
-          %(<div id="sec-#{id}" class="sec-title">#{heading.inner_html}</div>)
-        end
+        heading.inner_html = %(<div class="sec-title"><a href="#toc" id="sec-#{id}" class="toc-backlink">#{sec_num}.</a> #{heading.inner_html}</div>)
 
         # heading.inner_html = %(<div id="sec-#{id}" class="sec-title"><a href="#toc" class="toc-backlink">#</a> <span class="sec-title-text">#{heading.inner_html}</span></div>)
         # heading.inner_html = %(<div id="sec-#{id}" class="sec-title"><span class="sec-title-text">#{heading.inner_html}</span></div>)
