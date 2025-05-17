@@ -46,7 +46,7 @@ kramdown:
   syntax_highlighter_opts:
     block:
       start_line: 1         # 코드 블록 시작 줄 번호
-      line_numbers: false    # 줄 번호 표시
+      line_numbers: true    # 줄 번호 표시
     css_class: 'highlight'  # 구문 강조 CSS 클래스
   auto_ids: false          # 헤더에 자동 ID 생성 비활성화
   parse_block_html: false  # HTML 블록 내 마크다운 파싱 비활성화
