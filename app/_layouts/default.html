@@ -17,8 +17,7 @@
       <main>
         {{ content }}
       </main>
-      <!-- {% if page.layout == "document" %}
+      {% if page.layout == "document" and page.identifier%}
       {% include footer.html %}
-      {% endif %} -->
-      <!-- {% include footer.html %} -->
+      {% endif %}
   </body>
