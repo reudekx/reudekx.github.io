@@ -1,5 +1,6 @@
 ---
 layout: null
+sitemap: false
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -10,9 +11,9 @@ layout: null
     <priority>1.0</priority>
   </url>
   {%- for page in site.pages -%}
-    {%- unless page.url contains ".xml" or page.url contains "/assets" or page.sitemap.exclude == "yes" -%}
+    {%- unless page.url contains ".xml" or page.url contains "/assets" or page.sitemap.exclude == "yes" or page.url == "/" -%}
       <url>
-        <loc>{{ site.url }}{{ page.url | remove: "index.html" }}</loc>
+        <loc>{{ site.url }}{{ page.url | remove: "index.html" | replace: "&", "%26" | uri_escape }}</loc>
         <lastmod>{{ page.date | default: site.time | date_to_xmlschema }}</lastmod>
         <changefreq>{{ page.sitemap.changefreq | default: "monthly" }}</changefreq>
         <priority>{{ page.sitemap.priority | default: 0.5 }}</priority>
@@ -22,7 +23,7 @@ layout: null
   {%- for post in site.posts -%}
     {%- unless post.sitemap.exclude == "yes" -%}
       <url>
-        <loc>{{ site.url }}{{ post.url }}</loc>
+        <loc>{{ site.url }}{{ post.url | replace: "&", "%26" | uri_escape }}</loc>
         <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
         <changefreq>{{ post.sitemap.changefreq | default: "monthly" }}</changefreq>
         <priority>{{ post.sitemap.priority | default: 0.7 }}</priority>
@@ -34,7 +35,7 @@ layout: null
       {%- for doc in collection.docs -%}
         {%- unless doc.sitemap.exclude == "yes" -%}
           <url>
-            <loc>{{ site.url }}{{ doc.url }}</loc>
+            <loc>{{ site.url }}{{ doc.url | replace: "&", "%26" | uri_escape }}</loc>
             <lastmod>{{ doc.date | default: site.time | date_to_xmlschema }}</lastmod>
             <changefreq>{{ doc.sitemap.changefreq | default: "monthly" }}</changefreq>
             <priority>{{ doc.sitemap.priority | default: 0.6 }}</priority>
