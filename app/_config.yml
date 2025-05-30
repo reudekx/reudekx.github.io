@@ -8,7 +8,7 @@ repository: reudekx/reudekx.github.io
 
 plugins:
   - jekyll-feed
-  - jekyll-sitemap
+  # - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-github-metadata
 
