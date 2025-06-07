@@ -6,7 +6,7 @@ module Jekyll
       title = %(<h1><a href="#{page["link"]}">)
 
       title += if page["title"]
-        page["title"]
+        page["title"].to_s
       elsif page["name"]
         File.basename(page["name"], ".*")
       end
